@@ -23,4 +23,4 @@ jobs:
     - name: Pylint
       run: |
         export PYLINTRC=./.github/workflows/.pylintrc
-        pylint $(find ./python -name '*.py')  --fail-under=6
+        pylint $(find ./python -name '*.py')  --fail-under=7
