@@ -17,7 +17,7 @@ class Yatzy:
             counts[die - 1] += 1
         for i in range(len(counts)):
             if counts[i] == 5:
-                return 50
+                return 42
         return 0
 
     @staticmethod
