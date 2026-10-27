@@ -1,0 +1,1 @@
+{'chance': 13, 'yatzy': 0, 'two_pair': 10, 'full_house': 13}
