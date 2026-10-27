@@ -1,3 +1,10 @@
+# Revision
+
+This is a repurposed repo to demonstrate some github actions. The original repo credit and information is below. I have deleted a lot of "unrelated" material which can be found in the original repo here: https://github.com/emilybache/Yatzy-Refactoring-Kata
+
+
+
+# Original Readme by Emily Bache:
 _Support this and all my katas via [Patreon](https://www.patreon.com/EmilyBache)_
  
  # Yatzy Refactoring Kata
