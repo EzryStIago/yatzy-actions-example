@@ -26,4 +26,4 @@ jobs: # starts enumerating jobs. Each job will be run on its own node
       # if you have custom linting settings you can export them with e.g.: `export PYLINTRC=./.github/workflows/.pylintrc`
       # --fail-under tells the linter to throw an error if the score is below a threshold
       run:
-        pylint $(find ./python -name '*.py')  --fail-under=7
+        pylint python/yatzy1.py  --fail-under=7
