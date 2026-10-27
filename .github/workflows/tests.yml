@@ -20,10 +20,32 @@ jobs: # starts enumerating jobs. Each job will be run on its own node
       # If you have a package, you would install it here as well.
       run: | # the pipe character says "this is a multi-line step"
         python -m pip install --upgrade pip
-        pip install pytest
+        pip install -r python/requirements.txt
 
     - name: Run tests
       # Actual tests
       run: |
         cd python
-        python -m pytest
+        python -m pytest --ignore=tests/test_yatzy1_approval.py
+
+  approval_test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+    - uses: actions/checkout@v7
+    - uses: actions/setup-python@v6
+      with:
+        python-version: "3.12"
+    - name: Install dependencies
+      run: pip install -r python/requirements.txt
+    - name: Run approval test
+      working-directory: python
+      run: python -m pytest tests/test_yatzy1_approval.py
+    - name: Upload approval files
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: yatzy-approval-files
+        path: |
+          python/tests/*.approved.txt
+          python/tests/*.received.txt
