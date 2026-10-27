@@ -1,0 +1,28 @@
+name: tests # the workflow name
+
+on: [push] # when to run the workflow
+
+jobs: # starts enumerating jobs. Each job will be run on its own node
+  pytest_yatzy1: # the name of the particular job
+    runs-on: ubuntu-latest # image to run. Available options are here: https://github.com/actions/runner-images
+    timeout-minutes: 3 # timeout safety. If a job hangs, this will prevent using up your actions minutes. Like the time option for slurm.
+    strategy: # advanced configuration. You can provide lists of operating systems or python versions and control concurrency. More info here: https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations
+      matrix:
+        python-version: ["3.12"]
+    steps: # explicit steps
+    - uses: actions/checkout@v7 # makes the repo available on the action runner
+    - name: Set up Python ${{ matrix.python-version }} # dynamic name matrix.python-version gets the python version from the list above.
+      uses: actions/setup-python@v6 # sets up a python environment...
+      with:
+        python-version: ${{ matrix.python-version }} # ...with the specified python version
+    - name: Install dependencies
+      # The run block is an arbitrary shell script. Here, we just setup pip and install pytest.
+      # If you have a package, you would install it here as well.
+      run: | # the pipe character says "this is a multi-line step"
+        python -m pip install --upgrade pip
+        pip install pytest
+
+    - name: Run tests
+      # Actual tests
+      run:
+        pytest python
