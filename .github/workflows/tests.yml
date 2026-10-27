@@ -24,5 +24,6 @@ jobs: # starts enumerating jobs. Each job will be run on its own node
 
     - name: Run tests
       # Actual tests
-      run:
-        pytest python
+      run: |
+        cd python
+        python -m pytest
